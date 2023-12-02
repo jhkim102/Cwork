@@ -17,7 +17,7 @@ struct books list[5] = {
     {"Thanks", "Mark", "Saejong", 240, 21000, "available"},
     {"God", "Johnson", "Jungjo", 450, 35000, "available"}};
 
-void displaybook()
+void displaybook()//1번 책리스트 보이기
 {
     int i;
     printf("Title Authors Press Page Price \n");
@@ -29,12 +29,12 @@ void displaybook()
                list[i].Page, list[i].Price);
     }
 }
-void searchbook(char title[])
+void searchbook(char title[])//2번 책 검색하기
 {
     int i;
     for (i = 0; i < 5; i++)
     {
-        int res = strcmp(list[i].Title, &title[20]);
+        int res = strcmp(list[i].Title, &title[20]); //원하는 책 제목을 title로 입력받음
         if (res == 0)
         {
             printf("Title Authors Press Page Price borrow \n");
@@ -46,22 +46,22 @@ void searchbook(char title[])
     }
     printf("입력한 책은 보유하고 있지 않습니다.\n");
 }
-void output(char book[])
+void output(char book[])//3번 대출(내보내기)하기
 {
     int i;
     for (i = 0; i < 5; i++)
     {
-        int res = strcmp(list[i].Title, &book[20]);
+        int res = strcmp(list[i].Title, &book[20]); //이번에는 book으로 입력받고 비교함
         if (res == 0)
         {
-            if (strcmp(list[i].borrow, "available") == 0)
+            if (strcmp(list[i].borrow, "available") == 0)//제목과 같은 상황에서 대출가능하다고 표시되어있는지 확인
             {
                 printf("대출 되었습니다,\n");
                 printf("Title Authors Press Page Price borrow \n");
                 printf("----- ------- ----- ---- ----- ------\n");
                 printf("%s %s %s %d %d %s\n", list[i].Title, list[i].Author, list[i].Press,
                        list[i].Page, list[i].Price, list[i].borrow);
-                strcpy(list[i].borrow, "borrowing");
+                strcpy(list[i].borrow, "borrowing");// strcpy를 통해 문자열 바꾸기
             }
             else if (strcmp(list[i].borrow, "available") != 0)
             {
@@ -72,7 +72,7 @@ void output(char book[])
         }
     }
 }
-void input(char book[])
+void input(char book[])// 반납(받아오기)하기
 {
     int i;
     for (i = 0; i < 5; i++)
